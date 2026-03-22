@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melrose Tutoring Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a2e; --cream: #f9f5ef; --warm: #f0e9dc;
+    --accent: #c8622a; --accent-light: #e8956a;
+    --muted: #8a8070; --border: #ddd5c8; --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(249,245,239,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--ink); }
+  .nav-logo span { color: var(--accent); font-style: italic; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { background: var(--accent); color: white; border: none; padding: 0.55rem 1.3rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; border-radius: 4px; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: #b35520; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { min-height: 100vh; padding: 120px 5% 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; background: var(--cream); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,98,42,0.08) 0%, transparent 70%); border-radius: 50%; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--warm); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 460px; margin-bottom: 2.5rem; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: white; padding: 0.85rem 2rem; border: 2px solid var(--ink); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: transparent; color: var(--ink); }
+  .btn-secondary { background: transparent; color: var(--ink); padding: 0.85rem 2rem; border: 2px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--ink); }
+  .hero-visual { position: relative; display: flex; flex-direction: column; gap: 1rem; }
+  .hero-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 24px rgba(26,26,46,0.06); }
+  .hero-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .subject-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .s-math { background: #fef3e8; } .s-sci { background: #e8f4f0; }
+  .hero-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; }
+  .hero-card p { font-size: 0.82rem; color: var(--muted); }
+  .stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 1px; }
+  .stat-row { display: flex; gap: 1rem; }
+  .stat-box { flex: 1; background: var(--warm); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; text-align: center; }
+  .stat-box .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--ink); display: block; }
+  .stat-box .lbl { font-size: 0.78rem; color: var(--muted); }
+
+  /* SUBJECTS */
+  .section { padding: 6rem 5%; }
+  .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--ink); margin-bottom: 1rem; }
+  .section-intro { font-size: 1rem; color: var(--muted); max-width: 540px; margin-bottom: 3rem; line-height: 1.7; }
+
+  /* Grade level tabs */
+  .grade-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .grade-tab { padding: 0.45rem 1.1rem; border: 1.5px solid var(--border); border-radius: 100px; font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.18s; background: white; color: var(--muted); }
+  .grade-tab:hover { border-color: var(--accent-light); color: var(--ink); }
+  .grade-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; }
+  .subject-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.8rem 1.5rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; cursor: default; }
+  .subject-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,26,46,0.08); border-color: var(--accent-light); }
+  .subj-icon { font-size: 1.8rem; margin-bottom: 0.9rem; display: block; }
+  .subject-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .subject-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .grade-badge { display: inline-block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; background: var(--warm); color: var(--accent); border-radius: 4px; padding: 0.18rem 0.5rem; margin-top: 0.6rem; }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--ink); padding: 6rem 5%; color: white; }
+  .how-section .section-label { color: var(--accent-light); }
+  .how-section h2 { color: white; }
+  .how-section .section-intro { color: rgba(255,255,255,0.55); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .step { position: relative; padding-top: 1rem; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: rgba(255,255,255,0.07); line-height: 1; margin-bottom: 0.5rem; }
+  .step h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: white; margin-bottom: 0.6rem; }
+  .step p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .step-divider { width: 32px; height: 2px; background: var(--accent); margin-bottom: 1rem; }
+
+  /* BOOKING */
+  .booking-section { padding: 6rem 5%; background: var(--warm); }
+  .booking-wrapper { max-width: 680px; margin: 0 auto; background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(26,26,46,0.08); }
+  .booking-header { background: var(--ink); padding: 2.5rem 3rem; color: white; }
+  .booking-header h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.4rem; }
+  .booking-header p { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+
+  .booking-body { padding: 2.5rem 3rem; }
+
+  /* Subject picker */
+  .subject-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 2rem; }
+  .subj-pill {
+    border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 0.7rem 0.9rem; font-size: 0.84rem; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; background: white; color: var(--ink);
+    display: flex; align-items: center; gap: 0.5rem;
+    text-align: left;
+  }
+  .subj-pill:hover { border-color: var(--accent-light); background: #fef8f4; }
+  .subj-pill.selected { border-color: var(--accent); background: var(--accent); color: white; }
+  .subj-pill .pill-icon { font-size: 1rem; }
+
+  .divider-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  /* Calendar CTA */
+  .cal-cta-area { text-align: center; padding: 1rem 0 0.5rem; }
+  .cal-cta-area p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+
+  .gcal-btn {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    background: #1a73e8; color: white;
+    border: none; padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    border-radius: 8px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .gcal-btn:hover { background: #1557b0; transform: translateY(-1px); }
+  .gcal-btn svg { flex-shrink: 0; }
+
+  .or-divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 1.5rem 0; color: var(--muted); font-size: 0.82rem;
+  }
+  .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* Inline form */
+  .inline-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1.5px solid var(--border); border-radius: 6px;
+    padding: 0.7rem 0.9rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; color: var(--ink); background: white;
+    transition: border-color 0.2s; outline: none; width: 100%;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8070' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+  }
+  .submit-btn { grid-column: 1 / -1; background: var(--ink); color: white; border: none; padding: 0.95rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 8px; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 0.25rem; }
+  .submit-btn:hover { background: #2e2e4a; transform: translateY(-1px); }
+
+  /* Config note */
+  .config-note {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    background: #fff8f0; border: 1px solid #f5d9c0;
+    border-radius: 8px; padding: 0.9rem 1rem;
+    font-size: 0.8rem; color: #8a5a30; line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .config-note code {
+    font-family: monospace; background: rgba(0,0,0,0.06);
+    padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.78rem;
+  }
+
+  /* Success */
+  .success-msg { display: none; text-align: center; padding: 3rem 2rem; }
+  .success-msg .check { width: 64px; height: 64px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .success-msg p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 6rem 5%; background: var(--cream); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .testimonial-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; transition: transform 0.2s; }
+  .testimonial-card:hover { transform: translateY(-3px); }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); line-height: 0.5; margin-bottom: 1rem; }
+  .testimonial-card p { font-size: 0.9rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.2rem; }
+  .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+  .reviewer-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--warm); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--accent); }
+  .reviewer-name { font-size: 0.88rem; font-weight: 500; }
+  .reviewer-sub { font-size: 0.75rem; color: var(--muted); }
+
+  footer { background: var(--ink); padding: 3rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: white; }
+  .footer-logo span { color: var(--accent-light); font-style: italic; }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero > * { animation: fadeUp 0.6s ease both; }
+  .hero > *:nth-child(2) { animation-delay: 0.15s; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Melrose <span>Tutoring</span> Club</div>
+  <ul class="nav-links">
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#book">Book</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Session</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-tag">Student-led tutoring · Melrose, MA</div>
+    <h1>Learn more.<br>Stress <em>less.</em><br>Succeed.</h1>
+    <p>Melrose Tutoring Club connects K–12 students with peer tutors for personalized, one-on-one academic support — completely free.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Free Session</button>
+      <button class="btn-secondary" onclick="document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">Explore Subjects</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <div class="subject-icon s-math">📐</div>
+        <div><h4>Algebra & Calculus</h4><div class="stars">★★★★★</div></div>
+      </div>
+      <p>"Finally understood derivatives after just one session. My tutor made it so clear!"</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box"><span class="num">K–12</span><span class="lbl">All grade levels</span></div>
+      <div class="stat-box"><span class="num">10+</span><span class="lbl">Subjects</span></div>
+      <div class="stat-box"><span class="num">Free</span><span class="lbl">Always</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <div class="subject-icon s-sci">🧪</div>
+        <div><h4>AP Chemistry</h4><div class="stars">★★★★★</div></div>
+      </div>
+      <p>"Went from a C to an A in AP Chem. Peer tutors know exactly how the tests are structured."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="section" id="subjects">
+  <div class="section-label">What We Teach</div>
+  <h2>Subjects for every level</h2>
+  <p class="section-intro">From elementary fundamentals to AP coursework — our tutors are current students who've excelled in these courses and know exactly what it takes to succeed.</p>
+
+  <div class="grade-tabs">
+    <div class="grade-tab active" onclick="filterGrade('all', this)">All Levels</div>
+    <div class="grade-tab" onclick="filterGrade('elem', this)">Elementary (K–5)</div>
+    <div class="grade-tab" onclick="filterGrade('middle', this)">Middle School (6–8)</div>
+    <div class="grade-tab" onclick="filterGrade('hs', this)">High School (9–12)</div>
+  </div>
+
+  <div class="subjects-grid" id="subjectsGrid">
+    <!-- Elementary -->
+    <div class="subject-card" data-level="elem">
+      <span class="subj-icon">🔢</span>
+      <h3>Basic Math</h3>
+      <p>Addition, subtraction, multiplication, division, fractions, and number sense</p>
+      <span class="grade-badge">K–5</span>
+    </div>
+    <div class="subject-card" data-level="elem">
+      <span class="subj-icon">📖</span>
+      <h3>Reading & Phonics</h3>
+      <p>Phonics, reading comprehension, vocabulary, and early literacy skills</p>
+      <span class="grade-badge">K–5</span>
+    </div>
+    <div class="subject-card" data-level="elem">
+      <span class="subj-icon">✏️</span>
+      <h3>Writing Basics</h3>
+      <p>Sentence structure, paragraph writing, spelling, and grammar fundamentals</p>
+      <span class="grade-badge">K–5</span>
+    </div>
+    <!-- Middle -->
+    <div class="subject-card" data-level="middle">
+      <span class="subj-icon">📐</span>
+      <h3>Pre-Algebra & Algebra</h3>
+      <p>Integers, equations, functions, and intro to algebra concepts</p>
+      <span class="grade-badge">6–8</span>
+    </div>
+    <div class="subject-card" data-level="middle">
+      <span class="subj-icon">🌍</span>
+      <h3>Earth & Life Science</h3>
+      <p>Ecosystems, cells, the water cycle, geology, and middle school science</p>
+      <span class="grade-badge">6–8</span>
+    </div>
+    <div class="subject-card" data-level="middle">
+      <span class="subj-icon">📝</span>
+      <h3>Essay Writing</h3>
+      <p>Five-paragraph essays, argumentative writing, and literary analysis</p>
+      <span class="grade-badge">6–8</span>
+    </div>
+    <div class="subject-card" data-level="middle">
+      <span class="subj-icon">🏛️</span>
+      <h3>Social Studies</h3>
+      <p>US & world geography, ancient civilizations, civics, and map skills</p>
+      <span class="grade-badge">6–8</span>
+    </div>
+    <!-- High School -->
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">∫</span>
+      <h3>Calculus</h3>
+      <p>Limits, derivatives, integrals, AP Calc AB/BC, and differential equations</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">🧪</span>
+      <h3>Chemistry</h3>
+      <p>General chemistry, AP Chemistry, stoichiometry, and thermodynamics</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">🧬</span>
+      <h3>Biology</h3>
+      <p>Cellular respiration, genetics, AP Biology, and lab report writing</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">📜</span>
+      <h3>US & World History</h3>
+      <p>AP US History, AP World History, document analysis, and essay writing</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">📚</span>
+      <h3>English & AP Lang</h3>
+      <p>Literary analysis, AP Language & Composition, rhetoric, and research papers</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+    <div class="subject-card" data-level="hs">
+      <span class="subj-icon">🎓</span>
+      <h3>SAT / ACT Prep</h3>
+      <p>Test strategies, practice problems, timing, and section-specific coaching</p>
+      <span class="grade-badge">9–12</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-label">The Process</div>
+  <h2>How it works</h2>
+  <p class="section-intro">Three simple steps to your first session. No fees, no hassle.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-divider"></div><h3>Pick a subject</h3><p>Choose the subject and grade level you need help with from our booking form.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-divider"></div><h3>Choose a time</h3><p>Click through to our Google Calendar to pick any available appointment slot that works for your schedule.</p></div>
+    <div class="step"><div class="step-num">03</div><div class="step-divider"></div><h3>Get matched</h3><p>We'll pair you with a tutor who excels in your subject and knows your curriculum inside and out.</p></div>
+    <div class="step"><div class="step-num">04</div><div class="step-divider"></div><h3>Show up & learn</h3><p>Attend your session and bring your questions, notes, and homework. We'll work through it together.</p></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section" id="book">
+  <div style="max-width:680px; margin:0 auto 2rem; text-align:center;">
+    <div class="section-label">Book a Session</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,2.6rem); margin-bottom:0.75rem;">Schedule your first session</h2>
+    <p style="color:var(--muted); font-size:0.96rem;">All sessions are free. Pick a subject, then choose your time on Google Calendar.</p>
+  </div>
+
+  <div class="booking-wrapper">
+    <div class="booking-header">
+      <h2>Book an Appointment</h2>
+      <p>Step 1: Pick a subject · Step 2: Choose your time on Google Calendar</p>
+    </div>
+
+    <div class="booking-body" id="bookingBody">
+
+      <!-- Config note (visible for demo purposes) -->
+      <div class="config-note">
+        ⚙️ <span><strong>Setup:</strong> Replace <code>YOUR_GCAL_LINK</code> in the script below with your actual Google Calendar appointment link (e.g. <code>calendar.google.com/calendar/appointments/…</code>).</span>
+      </div>
+
+      <div class="divider-label">Select a subject</div>
+      <div class="subject-picker">
+        <div class="subj-pill" onclick="selectSubject(this, 'Basic Math (K–5)')"><span class="pill-icon">🔢</span> Basic Math</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Reading & Phonics (K–5)')"><span class="pill-icon">📖</span> Reading & Phonics</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Pre-Algebra / Algebra')"><span class="pill-icon">📐</span> Pre-Algebra / Algebra</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Essay Writing')"><span class="pill-icon">✏️</span> Essay Writing</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Science (Middle School)')"><span class="pill-icon">🌍</span> Science (Middle)</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Calculus / AP Calc')"><span class="pill-icon">∫</span> Calculus / AP Calc</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'AP Chemistry')"><span class="pill-icon">🧪</span> AP Chemistry</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'AP History / Social Studies')"><span class="pill-icon">📜</span> History</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'English / AP Language')"><span class="pill-icon">📚</span> English / AP Lang</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'SAT / ACT Test Prep')"><span class="pill-icon">🎓</span> SAT / ACT Prep</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Biology / AP Bio')"><span class="pill-icon">🧬</span> Biology</div>
+        <div class="subj-pill" onclick="selectSubject(this, 'Other')"><span class="pill-icon">💬</span> Other</div>
+      </div>
+
+      <div class="cal-cta-area">
+        <p id="calNote">Select a subject above, then click below to choose your time on Google Calendar.</p>
+        <a id="gcalBtn" class="gcal-btn" href="#" onclick="openCal(event)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="1.8"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="8" y="14" width="2.5" height="2.5" rx="0.5" fill="white"/>
+            <rect x="12.75" y="14" width="2.5" height="2.5" rx="0.5" fill="white"/>
+          </svg>
+          Choose a Time on Google Calendar
+        </a>
+        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.8rem;">Opens Google Calendar in a new tab — pick any available slot and confirm.</p>
+      </div>
+
+      <div class="or-divider">or leave a message instead</div>
+
+      <div class="inline-form">
+        <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="e.g. Alex Rivera"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Grade Level</label>
+          <select id="grade">
+            <option value="">Select grade</option>
+            <optgroup label="Elementary (K–5)">
+              <option>Kindergarten</option><option>1st Grade</option><option>2nd Grade</option>
+              <option>3rd Grade</option><option>4th Grade</option><option>5th Grade</option>
+            </optgroup>
+            <optgroup label="Middle School (6–8)">
+              <option>6th Grade</option><option>7th Grade</option><option>8th Grade</option>
+            </optgroup>
+            <optgroup label="High School (9–12)">
+              <option>9th Grade</option><option>10th Grade</option><option>11th Grade</option><option>12th Grade</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group"><label>Subject</label><input type="text" id="subjectInput" placeholder="Auto-filled from selection" readonly></div>
+        <div class="form-group full"><label>What do you need help with?</label><textarea id="notes" placeholder="e.g. I have a test on integration by parts next Friday..."></textarea></div>
+        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+      </div>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <div class="check">✓</div>
+      <h3>Message received!</h3>
+      <p>We'll follow up at your email within 24 hours.<br>Or book directly on Google Calendar anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Student Reviews</div>
+  <h2>What students say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><div class="quote-mark">"</div><p>I was struggling with related rates in Calc and my tutor walked me through five problems until I got it. Got a 94 on the next test.</p><div class="reviewer"><div class="reviewer-avatar">J</div><div><div class="reviewer-name">Jamie L.</div><div class="reviewer-sub">11th Grade · AP Calculus</div></div></div></div>
+    <div class="testimonial-card"><div class="quote-mark">"</div><p>The writing help made my history essay so much better. My tutor didn't just fix it — they taught me why each change mattered.</p><div class="reviewer"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Marcus T.</div><div class="reviewer-sub">7th Grade · Essay Writing</div></div></div></div>
+    <div class="testimonial-card"><div class="quote-mark">"</div><p>My son was falling behind in 4th grade math. After two sessions he actually started looking forward to homework. Incredible.</p><div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sarah R.</div><div class="reviewer-sub">Parent · 4th Grade Math</div></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Melrose <span>Tutoring</span> Club</div>
+  <p>© 2025 Melrose Tutoring Club · Melrose, MA</p>
+  <div class="footer-links"><a href="#subjects">Subjects</a><a href="#how">How It Works</a><a href="#book">Book</a></div>
+</footer>
+
+<script>
+  // ← REPLACE THIS with your actual Google Calendar appointment link
+  const GCAL_LINK = "YOUR_GCAL_LINK";
+
+  let selectedSubject = "";
+
+  function selectSubject(el, subject) {
+    document.querySelectorAll('.subj-pill').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSubject = subject;
+    document.getElementById('subjectInput').value = subject;
+    document.getElementById('calNote').textContent = `Great choice! Now click below to pick a time for ${subject}.`;
+  }
+
+  function openCal(e) {
+    e.preventDefault();
+    if (GCAL_LINK === "YOUR_GCAL_LINK") {
+      alert("⚙️ Setup needed: Replace YOUR_GCAL_LINK in the script with your actual Google Calendar appointment scheduling link.");
+      return;
+    }
+    // Optionally append subject as a note via URL param if your cal link supports it
+    const url = selectedSubject
+      ? `${GCAL_LINK}?subject=${encodeURIComponent('Tutoring: ' + selectedSubject)}`
+      : GCAL_LINK;
+    window.open(url, '_blank');
+  }
+
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    document.getElementById('bookingBody').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+
+  function filterGrade(level, el) {
+    document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.subject-card').forEach(card => {
+      if (level === 'all' || card.dataset.level === level) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  document.getElementById('date') && (document.getElementById('date').min = new Date().toISOString().split('T')[0]);
+</script>
+</body>
+</html>

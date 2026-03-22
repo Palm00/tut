@@ -51,13 +51,10 @@
   .btn-secondary { background: transparent; color: var(--ink); padding: 0.85rem 1.8rem; border: 2px solid var(--border); font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
   .btn-secondary:hover { border-color: var(--ink); }
   .hero-visual { display: flex; flex-direction: column; gap: 1rem; }
-  .hero-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; box-shadow: 0 4px 20px rgba(15,17,23,0.05); }
-  .hero-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+
   .subject-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
   .s-math { background: #d9edf7; } .s-sci { background: #d4eee8; }
-  .hero-card h4 { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; }
-  .hero-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
-  .stars { color: var(--accent); font-size: 0.7rem; letter-spacing: 1px; }
+
   .stat-row { display: flex; gap: 0.75rem; }
   .stat-box { flex: 1; background: var(--warm); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 0.75rem; text-align: center; }
   .stat-box .num { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--ink); display: block; letter-spacing: -0.02em; }
@@ -106,17 +103,7 @@
   .booking-form-wrap { width: 100%; background: white; }
   .booking-form-wrap iframe { display: block; width: 100%; border: none; }
 
-  /* TESTIMONIALS */
-  .testimonials { padding: 6rem 5%; background: var(--cream); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
-  .testimonial-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; transition: transform 0.2s; }
-  .testimonial-card:hover { transform: translateY(-3px); }
-  .quote-mark { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 0.6; margin-bottom: 1rem; }
-  .testimonial-card p { font-size: 0.88rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.2rem; }
-  .reviewer { display: flex; align-items: center; gap: 0.75rem; }
-  .reviewer-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--warm); display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-  .reviewer-name { font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600; }
-  .reviewer-sub { font-size: 0.73rem; color: var(--muted); }
+
 
   /* FOOTER */
   footer { background: var(--ink); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
@@ -166,8 +153,7 @@
     .booking-header { padding: 1.5rem 1.5rem; }
     .booking-header h2 { font-size: 1.25rem; }
 
-    .testimonials { padding: 4rem 5%; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+
 
     footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 5%; }
     .footer-links { gap: 1rem; }
@@ -213,24 +199,10 @@
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-card">
-      <div class="hero-card-header">
-        <div class="subject-icon s-math">📐</div>
-        <div><h4>Algebra & Calculus</h4><div class="stars">★★★★★</div></div>
-      </div>
-      <p>"Finally understood derivatives after just one session. My tutor made it so clear!"</p>
-    </div>
     <div class="stat-row">
       <div class="stat-box"><span class="num">K–12</span><span class="lbl">All grade levels</span></div>
       <div class="stat-box"><span class="num">10+</span><span class="lbl">Subjects</span></div>
       <div class="stat-box" style="border-color: var(--accent); background: var(--accent);"><span class="num" style="color: white;">Free</span><span class="lbl" style="color: rgba(255,255,255,0.8); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Always</span></div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-card-header">
-        <div class="subject-icon s-sci">🧪</div>
-        <div><h4>AP Chemistry</h4><div class="stars">★★★★★</div></div>
-      </div>
-      <p>"Went from a C to an A. Peer tutors know exactly how the tests are structured."</p>
     </div>
   </div>
 </section>

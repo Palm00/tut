@@ -91,93 +91,12 @@
 
   /* BOOKING */
   .booking-section { padding: 6rem 5%; background: var(--warm); }
-  .booking-wrapper { max-width: 680px; margin: 0 auto; background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(26,26,46,0.08); }
+  .booking-wrapper { max-width: 720px; margin: 0 auto; background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(26,26,46,0.08); }
   .booking-header { background: var(--ink); padding: 2.5rem 3rem; color: white; }
   .booking-header h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.4rem; }
   .booking-header p { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
-
-  .booking-body { padding: 2.5rem 3rem; }
-
-  /* Subject picker */
-  .subject-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 2rem; }
-  .subj-pill {
-    border: 1.5px solid var(--border); border-radius: 8px;
-    padding: 0.7rem 0.9rem; font-size: 0.84rem; font-weight: 500;
-    cursor: pointer; transition: all 0.15s; background: white; color: var(--ink);
-    display: flex; align-items: center; gap: 0.5rem;
-    text-align: left;
-  }
-  .subj-pill:hover { border-color: var(--accent-light); background: #fef8f4; }
-  .subj-pill.selected { border-color: var(--accent); background: var(--accent); color: white; }
-  .subj-pill .pill-icon { font-size: 1rem; }
-
-  .divider-label {
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 1rem;
-  }
-
-  /* Calendar CTA */
-  .cal-cta-area { text-align: center; padding: 1rem 0 0.5rem; }
-  .cal-cta-area p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
-
-  .gcal-btn {
-    display: inline-flex; align-items: center; gap: 0.65rem;
-    background: #1a73e8; color: white;
-    border: none; padding: 0.9rem 2rem;
-    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
-    border-radius: 8px; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-  }
-  .gcal-btn:hover { background: #1557b0; transform: translateY(-1px); }
-  .gcal-btn svg { flex-shrink: 0; }
-
-  .or-divider {
-    display: flex; align-items: center; gap: 1rem;
-    margin: 1.5rem 0; color: var(--muted); font-size: 0.82rem;
-  }
-  .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  /* Inline form */
-  .inline-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group.full { grid-column: 1 / -1; }
-  .form-group label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-  .form-group input, .form-group select, .form-group textarea {
-    border: 1.5px solid var(--border); border-radius: 6px;
-    padding: 0.7rem 0.9rem; font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; color: var(--ink); background: white;
-    transition: border-color 0.2s; outline: none; width: 100%;
-    appearance: none;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
-  .form-group textarea { resize: vertical; min-height: 80px; }
-  .form-group select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8070' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
-  }
-  .submit-btn { grid-column: 1 / -1; background: var(--ink); color: white; border: none; padding: 0.95rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; border-radius: 8px; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 0.25rem; }
-  .submit-btn:hover { background: #2e2e4a; transform: translateY(-1px); }
-
-  /* Config note */
-  .config-note {
-    display: flex; align-items: flex-start; gap: 0.6rem;
-    background: #fff8f0; border: 1px solid #f5d9c0;
-    border-radius: 8px; padding: 0.9rem 1rem;
-    font-size: 0.8rem; color: #8a5a30; line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  .config-note code {
-    font-family: monospace; background: rgba(0,0,0,0.06);
-    padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.78rem;
-  }
-
-  /* Success */
-  .success-msg { display: none; text-align: center; padding: 3rem 2rem; }
-  .success-msg .check { width: 64px; height: 64px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; }
-  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
-  .success-msg p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .booking-form-wrap { width: 100%; background: white; }
+  .booking-form-wrap iframe { display: block; width: 100%; border: none; }
 
   /* TESTIMONIALS */
   .testimonials { padding: 6rem 5%; background: var(--cream); }
@@ -374,76 +293,10 @@
   <div class="booking-wrapper">
     <div class="booking-header">
       <h2>Book an Appointment</h2>
-      <p>Step 1: Pick a subject · Step 2: Choose your time on Google Calendar</p>
+      <p>Fill out the form below — you'll receive a calendar link by email to pick your time.</p>
     </div>
-
-    <div class="booking-body" id="bookingBody">
-
-      <!-- Config note (visible for demo purposes) -->
-      <div class="config-note">
-        ⚙️ <span><strong>Setup:</strong> Replace <code>YOUR_GCAL_LINK</code> in the script below with your actual Google Calendar appointment link (e.g. <code>calendar.google.com/calendar/appointments/…</code>).</span>
-      </div>
-
-      <div class="divider-label">Select a subject</div>
-      <div class="subject-picker">
-        <div class="subj-pill" onclick="selectSubject(this, 'Basic Math (K–5)')"><span class="pill-icon">🔢</span> Basic Math</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Reading & Phonics (K–5)')"><span class="pill-icon">📖</span> Reading & Phonics</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Pre-Algebra / Algebra')"><span class="pill-icon">📐</span> Pre-Algebra / Algebra</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Essay Writing')"><span class="pill-icon">✏️</span> Essay Writing</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Science (Middle School)')"><span class="pill-icon">🌍</span> Science (Middle)</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Calculus / AP Calc')"><span class="pill-icon">∫</span> Calculus / AP Calc</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'AP Chemistry')"><span class="pill-icon">🧪</span> AP Chemistry</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'AP History / Social Studies')"><span class="pill-icon">📜</span> History</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'English / AP Language')"><span class="pill-icon">📚</span> English / AP Lang</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'SAT / ACT Test Prep')"><span class="pill-icon">🎓</span> SAT / ACT Prep</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Biology / AP Bio')"><span class="pill-icon">🧬</span> Biology</div>
-        <div class="subj-pill" onclick="selectSubject(this, 'Other')"><span class="pill-icon">💬</span> Other</div>
-      </div>
-
-      <div class="cal-cta-area">
-        <p id="calNote">Select a subject above, then click below to choose your time on Google Calendar.</p>
-        <a id="gcalBtn" class="gcal-btn" href="#" onclick="openCal(event)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="1.8"/>
-            <path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-            <rect x="8" y="14" width="2.5" height="2.5" rx="0.5" fill="white"/>
-            <rect x="12.75" y="14" width="2.5" height="2.5" rx="0.5" fill="white"/>
-          </svg>
-          Choose a Time on Google Calendar
-        </a>
-        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.8rem;">Opens Google Calendar in a new tab — pick any available slot and confirm.</p>
-      </div>
-
-      <div class="or-divider">or leave a message instead</div>
-
-      <div class="inline-form">
-        <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="e.g. Alex Rivera"></div>
-        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="you@example.com"></div>
-        <div class="form-group"><label>Grade Level</label>
-          <select id="grade">
-            <option value="">Select grade</option>
-            <optgroup label="Elementary (K–5)">
-              <option>Kindergarten</option><option>1st Grade</option><option>2nd Grade</option>
-              <option>3rd Grade</option><option>4th Grade</option><option>5th Grade</option>
-            </optgroup>
-            <optgroup label="Middle School (6–8)">
-              <option>6th Grade</option><option>7th Grade</option><option>8th Grade</option>
-            </optgroup>
-            <optgroup label="High School (9–12)">
-              <option>9th Grade</option><option>10th Grade</option><option>11th Grade</option><option>12th Grade</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="form-group"><label>Subject</label><input type="text" id="subjectInput" placeholder="Auto-filled from selection" readonly></div>
-        <div class="form-group full"><label>What do you need help with?</label><textarea id="notes" placeholder="e.g. I have a test on integration by parts next Friday..."></textarea></div>
-        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
-      </div>
-    </div>
-
-    <div class="success-msg" id="successMsg">
-      <div class="check">✓</div>
-      <h3>Message received!</h3>
-      <p>We'll follow up at your email within 24 hours.<br>Or book directly on Google Calendar anytime.</p>
+    <div class="booking-form-wrap">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf5JYiIjHdu37Y89qv1WpgQ4wd7raX1-zwMOGLls-k_BVuBAg/viewform?embedded=true" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
     </div>
   </div>
 </section>
@@ -466,40 +319,6 @@
 </footer>
 
 <script>
-  // ← REPLACE THIS with your actual Google Calendar appointment link
-  const GCAL_LINK = "YOUR_GCAL_LINK";
-
-  let selectedSubject = "";
-
-  function selectSubject(el, subject) {
-    document.querySelectorAll('.subj-pill').forEach(p => p.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedSubject = subject;
-    document.getElementById('subjectInput').value = subject;
-    document.getElementById('calNote').textContent = `Great choice! Now click below to pick a time for ${subject}.`;
-  }
-
-  function openCal(e) {
-    e.preventDefault();
-    if (GCAL_LINK === "YOUR_GCAL_LINK") {
-      alert("⚙️ Setup needed: Replace YOUR_GCAL_LINK in the script with your actual Google Calendar appointment scheduling link.");
-      return;
-    }
-    // Optionally append subject as a note via URL param if your cal link supports it
-    const url = selectedSubject
-      ? `${GCAL_LINK}?subject=${encodeURIComponent('Tutoring: ' + selectedSubject)}`
-      : GCAL_LINK;
-    window.open(url, '_blank');
-  }
-
-  function submitForm() {
-    const name = document.getElementById('fname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (!name || !email) { alert('Please fill in your name and email.'); return; }
-    document.getElementById('bookingBody').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-  }
-
   function filterGrade(level, el) {
     document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
@@ -511,8 +330,6 @@
       }
     });
   }
-
-  document.getElementById('date') && (document.getElementById('date').min = new Date().toISOString().split('T')[0]);
 </script>
 </body>
 </html>

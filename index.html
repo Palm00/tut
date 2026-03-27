@@ -66,6 +66,8 @@
   .section { padding: 4.5rem 5%; }
   .section-inner { max-width: 1200px; margin: 0 auto; }
   .how-section { background: var(--ink); padding: 4.5rem 5%; color: white; }
+  .how-section h2 { color: white; }
+  .how-section .section-intro { color: rgba(255,255,255,0.65); }
   .how-section-inner { max-width: 1200px; margin: 0 auto; }
   .booking-section { padding: 4.5rem 5%; background: var(--warm); }
   .section-label { font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
@@ -86,12 +88,12 @@
   .subject-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
   .grade-badge { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: var(--warm); color: var(--accent); border-radius: 4px; padding: 0.15rem 0.45rem; margin-top: 0.6rem; }
 
-  /* HOW IT WORKS */
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 2rem; margin-top: 3rem; }
-  .step-num { font-family: 'Outfit', sans-serif; font-size: 3.2rem; font-weight: 800; color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 0.5rem; }
-  .step h3 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
-  .step p { font-size: 0.86rem; color: rgba(255,255,255,0.48); line-height: 1.65; }
-  .step-divider { width: 28px; height: 2px; background: var(--accent); margin-bottom: 1rem; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.75rem 1.5rem; }
+  .step-num { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--accent-light); line-height: 1; margin-bottom: 0.5rem; opacity: 0.75; }
+  .step h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.7; }
+  .step-divider { width: 28px; height: 2px; background: var(--accent-light); margin-bottom: 1rem; }
 
   /* BOOKING */
   .booking-section { padding: 4.5rem 5%; background: var(--warm); }
@@ -177,9 +179,9 @@
   <ul class="nav-links">
     <li><a href="#subjects">Subjects</a></li>
     <li><a href="#how">How It Works</a></li>
-    <li><a href="#book">Book</a></li>
+    <li><a href="#book">Sign Up</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Session</button>
+  <button class="nav-cta" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Get Started</button>
   <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
     <span></span><span></span><span></span>
   </div>
@@ -188,17 +190,17 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#subjects" onclick="closeMenu()">Subjects</a>
   <a href="#how" onclick="closeMenu()">How It Works</a>
-  <a href="#book" onclick="closeMenu()" class="mobile-cta">Book a Session</a>
+  <a href="#book" onclick="closeMenu()" class="mobile-cta">Get Started</a>
 </div>
 
 <!-- HERO -->
 <div class="hero-outer">
 <section class="hero">
   <div>
-    <h1>Learn more.<br><em>Stress less.</em><br>Succeed.</h1>
+    <h1>Tutoring from<br>students who<br><em>get it.</em></h1>
     <p>Melrose Tutoring Club connects K–12 students with peer tutors for personalized, one-on-one academic support — <strong style="color: var(--accent); font-size: 1.05em;">completely free</strong>.</p>
     <div class="hero-buttons">
-      <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Free Session</button>
+      <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Request a Free Session</button>
       <button class="btn-secondary" onclick="document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">Explore Subjects</button>
     </div>
   </div>
@@ -285,14 +287,14 @@
 <!-- BOOKING -->
 <section class="booking-section" id="book">
   <div class="booking-intro">
-    <div class="section-label">Book a Session</div>
-    <h2>Schedule your first session</h2>
-    <p>All sessions are <strong style="color: var(--accent);">free</strong>. Fill out the form and we'll send you a confrimation email.</p>
+    <div class="section-label">Get Started</div>
+    <h2>Sign up for your first session</h2>
+    <p>All sessions are <strong style="color: var(--accent);">free</strong>. Fill out the form and we'll send you a confirmation email.</p>
   </div>
   <div class="booking-wrapper">
     <div class="booking-header">
-      <h2>Book an Appointment</h2>
-      <p>Fill out the form below.</p>
+      <h2>Request a Session</h2>
+      <p>Fill out the form below and we'll be in touch.</p>
     </div>
     <div class="booking-form-wrap">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf5JYiIjHdu37Y89qv1WpgQ4wd7raX1-zwMOGLls-k_BVuBAg/viewform?embedded=true" width="100%" height="950" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
@@ -304,7 +306,7 @@
   <div class="footer-inner">
     <div class="footer-logo">Melrose <span>Tutoring</span> Club</div>
     <p>© 2025 Melrose Tutoring Club · Melrose, MA</p>
-    <div class="footer-links"><a href="#subjects">Subjects</a><a href="#how">How It Works</a><a href="#book">Book</a></div>
+    <div class="footer-links"><a href="#subjects">Subjects</a><a href="#how">How It Works</a><a href="#book">Sign Up</a></div>
   </div>
 </footer>
 
